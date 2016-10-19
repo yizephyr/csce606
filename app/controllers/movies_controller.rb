@@ -11,7 +11,14 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    #debugger
+    @sort_column = params[:sorted]
+    @movies = Movie.order(params[:sorted])
+    @movies = @movies.where(:rating => params[:ratings].keys) if params[:ratings].present?
+    @all_ratings = Movie.all_ratings
+    @select_ratings = params[:ratings]
+    @select_ratings = Hash.new unless @set_ratings
+    # @all_ratings = Movie.distinct.pluck(:rating)
   end
 
   def new
