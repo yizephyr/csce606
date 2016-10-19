@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
     @movies = @movies.where(:rating => params[:ratings].keys) if params[:ratings].present?
     @all_ratings = Movie.all_ratings
     @select_ratings = params[:ratings]
-    @select_ratings = Hash.new unless @set_ratings
+    @select_ratings = Hash.new unless @select_ratings
     # @all_ratings = Movie.distinct.pluck(:rating)
   end
 
